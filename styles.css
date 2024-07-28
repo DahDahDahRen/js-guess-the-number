@@ -1,0 +1,151 @@
+:root {
+  /* Font Style */
+  --ff-press-start: "Press Start 2P", system-ui;
+  --ff-weight: 400;
+
+  --clr-primary: #210043;
+  --clr-secondary-one: #e3c00a;
+  --clr-secondary-two: #f1e9bd;
+  --clr-secondary-three: #52376e;
+  --clr-accent-one: #2faa03;
+  --clr-accent-two: #e2580a;
+  --clr-secondary-ntr-one: #f1f1f1;
+
+  font-size: 10px;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+
+  /* border: 1px solid red; */
+}
+
+body {
+  background-color: var(--clr-primary);
+  color: var(--clr-secondary-one);
+  line-height: 160%;
+
+  font-family: var(--ff-press-start);
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-wrapper {
+  max-width: 600px;
+}
+
+.hide {
+  display: none;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.flex-direction-column {
+  flex-direction: column;
+}
+
+.flex-justify-center {
+  justify-content: center;
+}
+
+.flex-align-center {
+  align-items: center;
+}
+
+.flex-gap-1 {
+  gap: 1rem;
+}
+
+.flex-gap-2 {
+  gap: 2rem;
+}
+
+.flex-gap-2-b {
+  gap: 2.4rem;
+}
+
+.flex-gap-3 {
+  gap: 3.2rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.heading-one {
+  font-size: 3.2rem;
+  line-height: 120%;
+}
+
+.subheading-one {
+  font-size: 1.8rem;
+  line-height: 120%;
+  color: var(--clr-secondary-two);
+}
+
+.btn {
+  cursor: pointer;
+  display: inline-block;
+
+  font-family: inherit;
+  letter-spacing: -0.24px;
+  font-size: 2.4rem;
+  text-transform: uppercase;
+
+  padding: 1.6rem 3rem;
+  border-radius: 8px;
+  border: none;
+  background-color: var(--clr-accent-one);
+  color: var(--clr-secondary-ntr-one);
+
+  transition: 200ms transform ease-in-out;
+}
+
+.btn-controller {
+  cursor: pointer;
+  background: none;
+  border: none;
+
+  transition: 200ms transform ease-in-out;
+}
+
+.btn:hover,
+.btn-controller:hover {
+  transform: translateY(-2px);
+}
+
+.hidden-number {
+  background-color: var(--clr-secondary-three);
+  font-size: 6rem;
+
+  height: 14rem;
+  width: 14rem;
+  border-radius: 0.8rem;
+  box-shadow: 0 0 0 0.8rem var(--clr-secondary-one);
+}
+
+.life-img {
+  height: 2.4rem;
+  width: 2.4rem;
+}
+
+.life-display-instruction {
+  width: 40rem;
+  color: var(--clr-secondary-ntr-one);
+}
+
+.game-over-clr-shadow {
+  box-shadow: 0 0 0 0.8rem var(--clr-accent-two);
+}
+
+.game-over-font-clr {
+  color: var(--clr-accent-two);
+}

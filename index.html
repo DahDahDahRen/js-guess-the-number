@@ -3,21 +3,128 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
     <title>Guess the Number!</title>
   </head>
   <body>
-    <h1>Guess the Number</h1>
+    <div class="app-wrapper">
+      <!-- ! Start Menu -->
+      <div>
+        <div
+          class="header-wrapper d-flex flex-direction-column flex-gap-3 hide"
+        >
+          <div class="d-flex flex-direction-column flex-gap-2">
+            <h1 class="heading-one text-center">Guess the Number</h1>
+            <p class="subheading-one text-center">
+              Press the button below to star guessing!
+            </p>
+          </div>
 
-    <input
-      type="number"
-      id="input-number"
-      name="input-number"
-      class="input-number"
-    />
-    <button class="btn btn-start">Start Game</button>
+          <div class="header-wrapper_controller d-flex flex-justify-center">
+            <button class="btn btn-start">Start!</button>
+          </div>
+        </div>
+      </div>
 
-    <div>
-      <p>Start guessing the number!</p>
+      <!-- !Game UI -->
+      <div class="hide">
+        <div class="game-ui-wrapper d-flex flex-direction-column flex-gap-3">
+          <h1 class="heading-one text-center">What is the hidden number?</h1>
+
+          <div
+            class="hidden-number-display d-flex flex-justify-center flex-align-center"
+          >
+            <p
+              class="hidden-number d-flex flex-justify-center flex-align-center"
+            >
+              ?
+            </p>
+          </div>
+
+          <div
+            class="game-controller-wrapper d-flex flex-justify-center flex-gap-2-b"
+          >
+            <button class="btn-controller">
+              <img src="./assets/angle-left.svg" alt="" />
+            </button>
+            <button class="btn btn-start">No. ?</button>
+            <button class="btn-controller">
+              <img src="./assets/angle-right.svg" alt="" />
+            </button>
+          </div>
+
+          <div
+            class="life-display-wrapper d-flex flex-gap-1 flex-direction-column"
+          >
+            <div class="life-display">
+              <img class="life-img" src="./assets/Life.svg" alt="life" />
+              <img class="life-img" src="./assets/Life.svg" alt="life" />
+              <img class="life-img" src="./assets/Life.svg" alt="life" />
+              <img class="life-img" src="./assets/Life.svg" alt="life" />
+            </div>
+
+            <div>
+              <p class="life-display-instruction">
+                Star gueesing the number by giving a number ranging from 1 to
+                10.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ! Correct Number Guess -->
+
+      <div class="hide">
+        <div
+          class="game-correct-guess-wrapper d-flex flex-direction-column flex-gap-3"
+        >
+          <h1 class="heading-one">Your correct!</h1>
+
+          <div
+            class="hidden-number-display d-flex flex-justify-center flex-align-center"
+          >
+            <p
+              class="hidden-number d-flex flex-justify-center flex-align-center"
+            >
+              ?
+            </p>
+          </div>
+
+          <div class="game-correct-guess-controller d-flex flex-justify-center">
+            <button class="btn btn-start">Restart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ! Game over -->
+      <div class="hide">
+        <div
+          class="game-correct-guess-wrapper d-flex flex-direction-column flex-gap-3"
+        >
+          <h1 class="heading-one">Game Over!</h1>
+
+          <div
+            class="hidden-number-display d-flex flex-justify-center flex-align-center"
+          >
+            <p
+              class="hidden-number d-flex flex-justify-center flex-align-center game-over-clr-shadow game-over-font-clr"
+            >
+              ?
+            </p>
+          </div>
+
+          <div class="game-correct-guess-controller d-flex flex-justify-center">
+            <button class="btn btn-start">Restart</button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script src="./script.js"></script>

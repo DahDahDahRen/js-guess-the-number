@@ -7,14 +7,17 @@ const tries = 3;
 let attempt = 0;
 let guessNumber = Math.floor(Math.random() * max) + min;
 
+//* Reset Game
 function resetGame() {
   console.log("Reset Game!");
 }
 
+//* Reset UI
 function resetUI() {
   console.log("Reset UI!");
 }
 
+//* Update UI
 function updateUI() {
   console.log("Update UI!");
 }
