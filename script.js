@@ -1,51 +1,184 @@
-const startGameBtn = document.querySelector(".btn-start");
-const numberInput = document.querySelector(".input-number");
+function app() {
+  //! Top Level Variables
+  const btnStart = document.querySelector(".btn-start");
+  const startSection = document.querySelector(".start-game-ui-section");
+  const btnGuess = document.querySelector(".btn-guess");
+  const btnRestart = document.querySelector(".btn-restart");
+  const gameSection = document.querySelector(".main-game-ui-section");
+  const gameWinSection = document.querySelector(".game-win-section");
+  const gameControllerWrapper = document.querySelector(
+    ".game-controller-wrapper"
+  );
+  const hiddenNumberDisplay = document.querySelector(".hidden-number");
+  const showHiddenNumber = document.querySelector(".show-hidden-number-1");
+  const gameHeading = document.querySelector(".game-heading");
+  const lifeImgs = document.querySelectorAll(".life-img");
+  const lifeDisplayContainer = document.querySelector(".life-display");
+  const tries = 4;
+  let playerAttempt = 0;
+  let guessMaxRange = 10;
+  let guessMinRange = 1;
+  let possibleGuessNumber = 0;
+  let randomNumber;
 
-const min = 1;
-const max = 10;
-const tries = 3;
-let attempt = 0;
-let guessNumber = Math.floor(Math.random() * max) + min;
+  //! Generate Random number
+  const generateRandomNumber = () => {
+    return Math.floor(Math.random() * 10) + 1;
+  };
 
-//* Reset Game
-function resetGame() {
-  console.log("Reset Game!");
-}
+  //! Update game ui display
+  const updateGameUIDisplay = (msg) => {
+    //* Update UI
+    hiddenNumberDisplay.textContent = `${possibleGuessNumber}`;
 
-//* Reset UI
-function resetUI() {
-  console.log("Reset UI!");
-}
+    //* Prompt the user
+    gameHeading.textContent = msg;
+  };
 
-//* Update UI
-function updateUI() {
-  console.log("Update UI!");
-}
+  //! Generate life
+  const generateLife = () => {
+    //* Clear life container
+    lifeDisplayContainer.innerHTML = " ";
 
-console.log(guessNumber);
+    //* Iterate life imgs
+    lifeImgs.forEach((life) => {
+      //* Create life HTML
+      const lifeHTMLTemplate = `<img class="life-img m-r-1" src="./assets/Life.svg" alt="life" />`;
 
-startGameBtn.addEventListener("click", function (event) {
-  //! Prevent default button behaviour
-  event.preventDefault();
+      //* Insert to DOM
+      lifeDisplayContainer.insertAdjacentHTML("afterbegin", lifeHTMLTemplate);
+    });
+  };
 
-  //? Empty input value
-  if (!numberInput.value) {
-    alert("Please try to guess!");
-  } else {
-    //? Guess correctly
-    if (+numberInput.value === guessNumber) {
-      resetUI();
-    } else {
-      //? Check if attempt is equal to the allowed tries
-      if (attempt === tries) {
-        resetGame();
+  //! Update Button text
+  const updateBtnTextContent = () => {
+    btnGuess.textContent = `No. ${possibleGuessNumber}`;
+  };
+
+  //! Rest Game function
+  const resetUiToDefaultState = () => {
+    //! Show game section
+    gameSection.classList.remove("hide");
+
+    //! Hide game win section
+    gameWinSection.classList.add("hide");
+
+    //! Generate new random number
+    randomNumber = generateRandomNumber();
+
+    //! Reset player attempt
+    playerAttempt = 0;
+
+    //! Rest user possible game number
+    possibleGuessNumber = 0;
+
+    //! Reset game heading
+    gameHeading.textContent = "What is the hidden number?";
+
+    //! Reset button text content
+    btnGuess.textContent = `No. ?`;
+
+    //! Reset hidden number display text
+    hiddenNumberDisplay.textContent = "?";
+  };
+
+  /*
+  ! APP EVENT LISTENER
+*/
+
+  //! Reveal Game main UI
+  btnStart.addEventListener("click", (event) => {
+    //! Hide menu section
+    startSection.classList.add("hide");
+
+    //! Show Game section
+    gameSection.classList.remove("hide");
+
+    //! Generate a random number
+    randomNumber = generateRandomNumber();
+
+    generateLife();
+  });
+
+  //! Listen to user input
+  gameControllerWrapper.addEventListener("click", (event) => {
+    event.preventDefault();
+
+    //* Increase number
+    if (event.target.classList.contains("icon-increase")) {
+      //? Check the possible game number
+      if (possibleGuessNumber < guessMaxRange) {
+        //* Increment
+        possibleGuessNumber++;
+
+        //* Update button text
+        updateBtnTextContent();
       } else {
-        //? Check if attempt is less than the allowed tries
-        if (attempt <= tries) {
-          attempt++;
-          updateUI();
+        //* Reset possbile guess number
+        possibleGuessNumber = guessMinRange;
+
+        //* Update button text
+        updateBtnTextContent();
+      }
+    }
+
+    //* Decrease Number
+    if (event.target.classList.contains("icon-decrease")) {
+      //? Check the possible game number
+      if (possibleGuessNumber > guessMinRange) {
+        //* Decrement
+        possibleGuessNumber--;
+
+        //* Update button text
+        updateBtnTextContent();
+      } else {
+        //* Reset possbile guess number
+        possibleGuessNumber = guessMaxRange;
+
+        //* Update button text
+        updateBtnTextContent();
+      }
+    }
+
+    //* Submit number
+    if (event.target.classList.contains("btn-guess")) {
+      if (btnGuess.textContent.includes("?")) {
+        console.log("start guessing!");
+      } else {
+        //! guess number is greater than the random number
+        if (possibleGuessNumber > randomNumber) {
+          //* Update UI
+          updateGameUIDisplay("Lower Please!");
+        }
+
+        //! guess number lower that the random number
+        if (possibleGuessNumber < randomNumber) {
+          //* Update UI
+          updateGameUIDisplay("Higher Please!");
+        }
+
+        //! guess number is equal to the random number
+        if (possibleGuessNumber === randomNumber) {
+          //* Show game win section
+          gameWinSection.classList.remove("hide");
+
+          //* Hide Game main section
+          gameSection.classList.add("hide");
+
+          //* Show to hidden number
+          showHiddenNumber.textContent = possibleGuessNumber;
         }
       }
     }
-  }
-});
+  });
+
+  //! Restart game
+  btnRestart.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    //! Reset to default state
+    resetUiToDefaultState();
+  });
+}
+
+app();

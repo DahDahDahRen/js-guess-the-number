@@ -15,7 +15,7 @@
   <body>
     <div class="app-wrapper">
       <!-- ! Start Menu -->
-      <div>
+      <div class="start-game-ui-section">
         <div
           class="header-wrapper d-flex flex-direction-column flex-gap-3 hide"
         >
@@ -33,9 +33,11 @@
       </div>
 
       <!-- !Game UI -->
-      <div class="hide">
+      <div class="main-game-ui-section hide">
         <div class="game-ui-wrapper d-flex flex-direction-column flex-gap-3">
-          <h1 class="heading-one text-center">What is the hidden number?</h1>
+          <h1 class="heading-one text-center game-heading">
+            What is the hidden number?
+          </h1>
 
           <div
             class="hidden-number-display d-flex flex-justify-center flex-align-center"
@@ -50,12 +52,16 @@
           <div
             class="game-controller-wrapper d-flex flex-justify-center flex-gap-2-b"
           >
-            <button class="btn-controller">
-              <img src="./assets/angle-left.svg" alt="" />
+            <button class="btn-controller btn-decrease">
+              <img src="./assets/angle-left.svg" class="icon-decrease" alt="" />
             </button>
-            <button class="btn btn-start">No. ?</button>
-            <button class="btn-controller">
-              <img src="./assets/angle-right.svg" alt="" />
+            <button class="btn btn-start btn-guess">No. ?</button>
+            <button class="btn-controller btn-increase">
+              <img
+                src="./assets/angle-right.svg"
+                class="icon-increase"
+                alt=""
+              />
             </button>
           </div>
 
@@ -63,10 +69,10 @@
             class="life-display-wrapper d-flex flex-gap-1 flex-direction-column"
           >
             <div class="life-display">
-              <img class="life-img" src="./assets/Life.svg" alt="life" />
-              <img class="life-img" src="./assets/Life.svg" alt="life" />
-              <img class="life-img" src="./assets/Life.svg" alt="life" />
-              <img class="life-img" src="./assets/Life.svg" alt="life" />
+              <img class="life-img m-r-1" src="./assets/Life.svg" alt="life" />
+              <img class="life-img m-r-1" src="./assets/Life.svg" alt="life" />
+              <img class="life-img m-r-1" src="./assets/Life.svg" alt="life" />
+              <img class="life-img m-r-1" src="./assets/Life.svg" alt="life" />
             </div>
 
             <div>
@@ -81,7 +87,7 @@
 
       <!-- ! Correct Number Guess -->
 
-      <div class="hide">
+      <div class="game-win-section hide">
         <div
           class="game-correct-guess-wrapper d-flex flex-direction-column flex-gap-3"
         >
@@ -91,14 +97,14 @@
             class="hidden-number-display d-flex flex-justify-center flex-align-center"
           >
             <p
-              class="hidden-number d-flex flex-justify-center flex-align-center"
+              class="hidden-number show-hidden-number-1 d-flex flex-justify-center flex-align-center"
             >
               ?
             </p>
           </div>
 
           <div class="game-correct-guess-controller d-flex flex-justify-center">
-            <button class="btn btn-start">Restart</button>
+            <button class="btn btn-restart btn-start">Restart</button>
           </div>
         </div>
       </div>
@@ -121,7 +127,7 @@
           </div>
 
           <div class="game-correct-guess-controller d-flex flex-justify-center">
-            <button class="btn btn-start">Restart</button>
+            <button class="btn btn-restart">Try Again</button>
           </div>
         </div>
       </div>
