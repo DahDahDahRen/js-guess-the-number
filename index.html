@@ -86,7 +86,6 @@
       </div>
 
       <!-- ! Correct Number Guess -->
-
       <div class="game-win-section hide">
         <div
           class="game-correct-guess-wrapper d-flex flex-direction-column flex-gap-3"
@@ -110,7 +109,7 @@
       </div>
 
       <!-- ! Game over -->
-      <div class="hide">
+      <div class="hide game-over-section">
         <div
           class="game-correct-guess-wrapper d-flex flex-direction-column flex-gap-3"
         >
@@ -120,14 +119,14 @@
             class="hidden-number-display d-flex flex-justify-center flex-align-center"
           >
             <p
-              class="hidden-number d-flex flex-justify-center flex-align-center game-over-clr-shadow game-over-font-clr"
+              class="hidden-number reveal-number d-flex flex-justify-center flex-align-center game-over-clr-shadow game-over-font-clr"
             >
               ?
             </p>
           </div>
 
           <div class="game-correct-guess-controller d-flex flex-justify-center">
-            <button class="btn btn-restart">Try Again</button>
+            <button class="btn btn-try-again">Try Again</button>
           </div>
         </div>
       </div>

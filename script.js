@@ -4,6 +4,7 @@ function app() {
   const startSection = document.querySelector(".start-game-ui-section");
   const btnGuess = document.querySelector(".btn-guess");
   const btnRestart = document.querySelector(".btn-restart");
+  const btnTryAgain = document.querySelector(".btn-try-again");
   const gameSection = document.querySelector(".main-game-ui-section");
   const gameWinSection = document.querySelector(".game-win-section");
   const gameControllerWrapper = document.querySelector(
@@ -11,11 +12,14 @@ function app() {
   );
   const hiddenNumberDisplay = document.querySelector(".hidden-number");
   const showHiddenNumber = document.querySelector(".show-hidden-number-1");
+  const revealHiddenNumber = document.querySelector(".reveal-number");
+  const gameOverSection = document.querySelector(".game-over-section");
   const gameHeading = document.querySelector(".game-heading");
   const lifeImgs = document.querySelectorAll(".life-img");
   const lifeDisplayContainer = document.querySelector(".life-display");
+
   const tries = 4;
-  let playerAttempt = 0;
+  let playerAttempt = 4;
   let guessMaxRange = 10;
   let guessMinRange = 1;
   let possibleGuessNumber = 0;
@@ -147,14 +151,44 @@ function app() {
       } else {
         //! guess number is greater than the random number
         if (possibleGuessNumber > randomNumber) {
-          //* Update UI
-          updateGameUIDisplay("Lower Please!");
+          //* Decrement player attemtp
+          playerAttempt--;
+
+          //* Check if player reach the zero attempt
+          if (playerAttempt === 0) {
+            //* Show Game Over Section
+            gameOverSection.classList.remove("hide");
+
+            //* Hide Game main section
+            gameSection.classList.add("hide");
+
+            //* Reveal hidden number
+            revealHiddenNumber.textContent = randomNumber;
+          } else {
+            //* Update UI
+            updateGameUIDisplay("Lower Please!");
+          }
         }
 
         //! guess number lower that the random number
         if (possibleGuessNumber < randomNumber) {
-          //* Update UI
-          updateGameUIDisplay("Higher Please!");
+          //* Decrement player attemtp
+          playerAttempt--;
+
+          //* Check if player reach the zero attempt
+          if (playerAttempt === 0) {
+            //* Show Game Over Section
+            gameOverSection.classList.remove("hide");
+
+            //* Hide Game main section
+            gameSection.classList.add("hide");
+
+            //* Reveal hidden number
+            revealHiddenNumber.textContent = randomNumber;
+          } else {
+            //* Update UI
+            updateGameUIDisplay("Lower Please!");
+          }
         }
 
         //! guess number is equal to the random number
@@ -175,8 +209,16 @@ function app() {
   //! Restart game
   btnRestart.addEventListener("click", (e) => {
     e.preventDefault();
-
     //! Reset to default state
+    resetUiToDefaultState();
+  });
+
+  //! Try again playing the game
+  btnTryAgain.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    gameOverSection.classList.add("hide");
+
     resetUiToDefaultState();
   });
 }
